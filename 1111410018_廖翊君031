@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1111410018_廖翊君031
+{
+    class Program
+    {
+        static List<int> FindWordsWithCharacter(string[] words, char x)
+        {
+            List<int> result = new List<int>();
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (words[i].Contains(x))
+                {
+                    result.Add(i);
+                }
+            }
+            return result;
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("輸入字串陣列:");
+            string input1 = Console.ReadLine();
+            string[] words = input1.Split(' ');
+
+            Console.WriteLine("輸入字元:");
+            char x = Convert.ToChar(Console.ReadLine());
+
+            var indices = FindWordsWithCharacter(words, x);
+
+            if (!indices.Any())
+            {
+                Console.WriteLine("[]");
+            }
+            else
+            {
+                foreach (var index in indices)
+                {
+                    Console.Write("[" + index + "]");
+                }
+            }
+            if (!indices.Any())
+            {
+                Console.WriteLine(x + "未出現在任何單字。因此，我們傳回一個空數組 null。");
+            }
+            else
+            {
+                Console.Write("\r\n");
+                Console.WriteLine("'" + x + "' 出現在: \"" + string.Join("\", \"", indices.Select(i => words[i])) + "\". 返回索引:" + string.Join("和", indices));
+
+            }
+        }
+    }
+}
